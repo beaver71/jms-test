@@ -1,0 +1,81 @@
+{
+  "name": "qpid-java",
+  "modelVersion": "7.1",
+  "authenticationproviders": [
+	{
+		"name" : "plain",
+		"type" : "Plain",
+		"secureOnlyMechanisms": "",
+		"users" : [ {
+		  "name" : "guest",
+		  "type" : "managed",
+		  "password" : "guest"
+		}, {
+		  "name" : "test",
+		  "type" : "managed",
+		  "password" : "test"
+		} ]
+	  },
+    {
+      "name": "passwordFile",
+      "type": "PlainPasswordFile",
+      "path": "${PASSWD_FILE}"
+    }
+  ],
+  "brokerloggers" : [
+    {
+      "name" : "console",
+      "type" : "Console",
+      "lastUpdatedBy" : "admin",
+      "brokerloginclusionrules" : [ {
+        "name" : "rootInclude",
+        "type" : "NameAndLevel",
+        "durable" : true,
+        "level" : "INFO"
+      } ]
+    }
+  ],
+  "plugins": [
+    {
+      "type": "MANAGEMENT-HTTP",
+      "name": "httpManagement"
+    }
+  ],
+  "ports": [
+    {
+      "name": "AMQP",
+      "type": "AMQP",
+      "authenticationProvider": "plain",
+      "port": "5675",
+      "protocols": ["AMQP_1_0"],
+      "virtualhostaliases": [
+        {
+          "name": "defaultAlias",
+          "type": "defaultAlias"
+        },
+        {
+          "name": "hostnameAlias",
+          "type": "hostnameAlias"
+        },
+        {
+          "name": "nameAlias",
+          "type": "nameAlias"
+        }
+      ]
+    },
+    {
+      "name": "HTTP",
+      "port": "8080",
+      "authenticationProvider": "passwordFile",
+      "protocols": ["HTTP"]
+    }
+  ],
+  "virtualhostnodes": [
+    {
+      "name": "default",
+      "type": "JSON",
+      "defaultVirtualHostNode": "true",
+      "virtualHostInitialConfiguration": "{}"
+    }
+  ]
+}
