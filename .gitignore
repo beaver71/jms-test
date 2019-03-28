@@ -1,0 +1,20 @@
+#netbeans
+nb-configuration.xml
+nbactions.xml
+nbproject/
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+#compiled
+target
+
+#backup
+_bkp/
+
+#bat
+*.bat
+
+docs/
