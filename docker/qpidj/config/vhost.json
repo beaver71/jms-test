@@ -1,0 +1,14 @@
+{
+  "type": "BDB",
+  "name": "qpid",
+  "modelVersion": "7.1",
+  "exchanges": [
+    {
+      "name": "croads",
+      "type": "topic",
+      "durable": true
+    }
+  ],
+  "queues": [
+  ]
+}

@@ -1,0 +1,34 @@
+version: '3'
+services:
+
+  activemq:
+    build: ./activemq
+    container_name: activemq
+    hostname: activemq
+    ports:
+       - 8161:8161
+       - 5673:5673
+
+  qpidc:
+    build: ./qpidc
+    container_name: qpidc
+    hostname: qpidc
+    ports:
+    - 5674:5674
+    volumes:
+    - "./qpidc/config:/config"
+
+  qpidj:
+    build: ./qpidj
+    container_name: qpidj
+    hostname: qpidj
+    ports:
+    - 8080:8080
+    - 5675:5675
+    volumes:
+    - "./qpidj/config:/config"
+    - "./tmp:/tmp"
+    environment:
+      VHOST_FILE: "/config/vhost.json"
+      PASSWD_FILE: "/config/passwd"
+
