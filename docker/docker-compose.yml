@@ -41,3 +41,14 @@ services:
        - 8162:8162
        - 5676:5676
 
+  rabbitmq:
+    build: ./rabbitmq
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "test"
+      RABBITMQ_DEFAULT_PASS: "test"
+      RABBITMQ_DEFAULT_VHOST: "/"
