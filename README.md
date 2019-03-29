@@ -8,7 +8,7 @@ See full MIT license text [here](license.md).
 This repo provides:
 
 - Java clients, both Receiver and Sender, used to test JMS filtering and JMS topic features with different AMQP 1.0 brokers
-- Docker multicontainer environment to expose ActiveMQ, Qpid cpp broker and Qpid java broker services
+- Docker multicontainer environment to expose ActiveMQ, Qpid cpp broker, Qpid java broker and ActiveMQ Artemis services
 
 ## Instructions
 
@@ -17,11 +17,14 @@ This repo provides:
 - run `netstat -tulpn | grep docker` to check services:
 
 ```
-tcp6       0      0 :::5673                 :::*                    LISTEN      14604/docker-proxy
-tcp6       0      0 :::5674                 :::*                    LISTEN      14627/docker-proxy
-tcp6       0      0 :::5675                 :::*                    LISTEN      14674/docker-proxy
-tcp6       0      0 :::8080                 :::*                    LISTEN      14657/docker-proxy
-tcp6       0      0 :::8161                 :::*                    LISTEN      14593/docker-proxy
+tcp6       0      0 :::5673                 :::*                    LISTEN      5901/docker-proxy
+tcp6       0      0 :::5674                 :::*                    LISTEN      5538/docker-proxy
+tcp6       0      0 :::5675                 :::*                    LISTEN      5514/docker-proxy
+tcp6       0      0 :::5676                 :::*                    LISTEN      4636/docker-proxy
+tcp6       0      0 :::8080                 :::*                    LISTEN      5503/docker-proxy
+tcp6       0      0 :::8161                 :::*                    LISTEN      5890/docker-proxy
+tcp6       0      0 :::8162                 :::*                    LISTEN      4625/docker-proxy
+
 ```
 
 **ActiveMQ** is listening for AMQP connections on **5673** port, and its web console is available at [http://localhost:8161/](http://localhost:8161/) (credentials guest/guest)
@@ -31,6 +34,8 @@ tcp6       0      0 :::8161                 :::*                    LISTEN      
 See <https://qpid.apache.org/releases/qpid-cpp-1.39.0/cpp-broker/book/chapter-Managing-CPP-Broker.html>
 
 **Qpid java broker** is listening for AMQP connections on **5675** port, web console is at <http://localhost:8080/>  (credentials admin/admin)
+
+**ActiveMQ Artemis** is listening for AMQP connections on **5676** port, and its web console is available at [http://localhost:8162/](http://localhost:8162/) (credentials guest/guest)
 
 ### Compiling java testing clients
 
@@ -124,3 +129,5 @@ See <https://qpid.apache.org/releases/qpid-cpp-1.39.0/cpp-broker/book/chapter-Ma
 [Apache Qpid broker J](http://qpid.apache.org/components/broker-j/index.html)
 
 [ Java Message Service (JMS) API reference](https://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html)
+
+[Apache ActiveMQ Artemis](http://activemq.apache.org/artemis/)

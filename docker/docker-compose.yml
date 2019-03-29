@@ -1,4 +1,5 @@
 version: '3'
+
 services:
 
   activemq:
@@ -14,21 +15,29 @@ services:
     container_name: qpidc
     hostname: qpidc
     ports:
-    - 5674:5674
+       - 5674:5674
     volumes:
-    - "./qpidc/config:/config"
+       - "./qpidc/config:/config"
 
   qpidj:
     build: ./qpidj
     container_name: qpidj
     hostname: qpidj
     ports:
-    - 8080:8080
-    - 5675:5675
+       - 8080:8080
+       - 5675:5675
     volumes:
-    - "./qpidj/config:/config"
-    - "./tmp:/tmp"
+       - "./qpidj/config:/config"
+       - "./tmp:/tmp"
     environment:
       VHOST_FILE: "/config/vhost.json"
       PASSWD_FILE: "/config/passwd"
+
+  artemis:
+    build: ./artemis
+    container_name: artemis
+    hostname: artemis
+    ports:
+       - 8162:8162
+       - 5676:5676
 
