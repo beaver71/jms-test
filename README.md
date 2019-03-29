@@ -41,7 +41,7 @@ See <https://qpid.apache.org/releases/qpid-cpp-1.39.0/cpp-broker/book/chapter-Ma
 ### Running JMS filter testing clients
 
 - run `./startclient.sh Receiver -p 5673` to start a **Receiver** client, connecting to [amqp://localhost:5673](amqp://localhost:5673) and destination node **croads**, using JMSfilter: `nat='it' AND prod='a22' AND geo LIKE 'u0j2%'` and expecting to consume up to 10 messages.
-- run `./startclient.sh Sender -p 5673` to start a **Sender** client, which connects to [amqp://localhost:5673](amqp://localhost:5673) and send 5 messages to destination node **croads** :
+- run `./startclient.sh Sender -p 5673` to start a **Sender** client, which connects to [amqp://localhost:5673](amqp://localhost:5673) and sends 5 messages to destination node **croads** :
 
 > **1-msg:** 
 >
@@ -83,7 +83,7 @@ See <https://qpid.apache.org/releases/qpid-cpp-1.39.0/cpp-broker/book/chapter-Ma
 ### Running JMS topic testing clients
 
 - run `./startclient.sh TopicReceiver -p 5673` to start a **Receiver** client, connecting to [amqp://localhost:5673](amqp://localhost:5673) and destination **croads/it.a22.\*.\*.u0j2.#**, that is topic exchange croads and binding key : `it.a22.*.*.u0j2.#` and expecting to consume up to 10 messages.
-- run `./startclient.sh TopicSender -p 5673` to start a **Sender** client, which connects to [amqp://localhost:5673](amqp://localhost:5673) and send 5 messages to destination node **croads** with different topics:
+- run `./startclient.sh TopicSender -p 5673` to start a **Sender** client, which connects to [amqp://localhost:5673](amqp://localhost:5673) and sends 5 messages to destination node **croads** with different topics:
 
 > **1-msg:** 
 >
@@ -112,3 +112,15 @@ See <https://qpid.apache.org/releases/qpid-cpp-1.39.0/cpp-broker/book/chapter-Ma
 >
 > 2-message: test4
 >   nat=it, geo=u0j2x5z, det=ivim, JMSXDeliveryCount=1, prod=a22, type=asn1
+
+
+
+## Links:
+
+[Apache ActiveMQ site web](http://activemq.apache.org/)
+
+[Apache Qpid broker C++](http://qpid.apache.org/components/cpp-broker/index.html)
+
+[Apache Qpid broker J](http://qpid.apache.org/components/broker-j/index.html)
+
+[ Java Message Service (JMS) API reference](https://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html)
