@@ -14,7 +14,4 @@ target
 #backup
 _bkp/
 
-#bat
-*.bat
-
 docs/
