@@ -28,10 +28,11 @@ WORKDIR $ARTEMIS_HOME
 RUN ./bin/artemis create /opt/artemis_broker --user guest --password guest --allow-anonymous --http-port 8162
 	
 ADD broker.xml /opt/artemis_broker/etc/
+ADD bootstrap.xml /opt/artemis_broker/etc/
+ADD jolokia-access.xml /opt/artemis_broker/etc/
 
 USER root
 
 WORKDIR /opt/artemis_broker
 
-#CMD ["sh", "-c", "echo $ARTEMIS_HOME"]
 CMD ["sh", "-c", "/opt/artemis_broker/bin/artemis run"]
