@@ -7,7 +7,7 @@ See full MIT license text [here](license.md).
 ## Introduction
 This repo provides:
 
-- Java clients, both Receiver and Sender, used to test **JMS filtering** and **JMS topic** features with different AMQP 1.0 brokers
+- **Java** clients, both **Receiver** and **Sender**, used to test **JMS filtering** and **JMS topic** features with different AMQP 1.0 brokers
 - Docker multicontainer environment to expose AMQP broker services on different ports
 
 ## Instructions
@@ -116,6 +116,12 @@ tcp6       0      0 :::8162                 :::*                    LISTEN      
 >
 > 2-message: test4
 >   nat=it, geo=u0j2x5z, det=ivim, JMSXDeliveryCount=1, prod=a22, type=asn1
+
+
+
+## Node.js clients
+
+See https://github.com/beaver71/jms-test-nodejs
 
 
 
