@@ -25,10 +25,13 @@ public class Receiver {
 
 	public static void main(String[] args) throws Exception {
 
-		String port = "5675";
+		String host = "localhost";
+        String port = "5673";
 		int count = Integer.parseInt(DEFAULT_COUNT);
 		String select = "nat='it' AND prod='a22' AND geo LIKE 'u0j2%'";
 		String node = "croads";
+        String user = "";
+        String passw = "";
 
 		Options options = new Options();
 
@@ -36,11 +39,15 @@ public class Receiver {
 		op1.setRequired(false);
 		options.addOption(op1);
 
+		Option op2b = new Option("t", "host", true, "host to connect to");
+		op2b.setRequired(false);
+		options.addOption(op2b);
+
 		Option op2 = new Option("p", "port", true, "port to connect to");
 		op2.setRequired(false);
 		options.addOption(op2);
 
-		Option op3 = new Option("s", "selector", true, "the selector string to use");
+		Option op3 = new Option("s", "selector", true, "the JMS selector string to use");
 		op2.setRequired(false);
 		options.addOption(op3);
 
@@ -48,9 +55,17 @@ public class Receiver {
 		op4.setRequired(false);
 		options.addOption(op4);
 
-		Option op5 = new Option("n", "node", true, "name of node (e.g. queue or topic) from which messages are received");
+		Option op5 = new Option("n", "node", true, "name of destination node (e.g. queue or topic) from which messages are received");
 		op5.setRequired(false);
 		options.addOption(op5);
+        
+		Option op6 = new Option("u", "user", true, "username");
+		op6.setRequired(false);
+		options.addOption(op6);
+        
+		Option op7 = new Option("w", "pwd", true, "password");
+		op7.setRequired(false);
+		options.addOption(op7);
 
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
@@ -58,10 +73,13 @@ public class Receiver {
 
 		try {
 			cmd = parser.parse(options, args);
-			port = cmd.getOptionValue("p", "5675");
+            host = cmd.getOptionValue("t", "localhost");
+			port = cmd.getOptionValue("p", "5673");
 			count = Integer.parseInt(cmd.getOptionValue("m", DEFAULT_COUNT));
 			select = cmd.getOptionValue("s", select);
 			node = cmd.getOptionValue("n", node);
+            user = cmd.getOptionValue("u", usr);
+			passw = cmd.getOptionValue("w", pwd);
 
 			if ( cmd.hasOption( "help" ) ) {
 				formatter.printHelp("Receiver", options);
@@ -74,7 +92,7 @@ public class Receiver {
 			System.exit(1);
 		}
 
-		String conn_str = "amqp://localhost:" + port;
+		String conn_str = "amqp://" + host + ":" + port;
 
 		try {
 			// set up JNDI context
@@ -85,8 +103,8 @@ public class Receiver {
 			Context context = new InitialContext(hashtable);
 			ConnectionFactory factory = (ConnectionFactory) context.lookup("myFactoryLookup");
 			Destination address = (Destination) context.lookup("myTopicLookup");
-
-			Connection connection = factory.createConnection(usr, pwd);
+            
+			Connection connection = factory.createConnection(user, passw);
 			connection.setClientID("java-receiver");
 			connection.setExceptionListener(new MyExceptionListener());
 			connection.start();
